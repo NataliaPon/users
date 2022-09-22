@@ -3,21 +3,29 @@ package com.poniatowska.taskusers
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.poniatowska.taskusers.models.User
+import com.squareup.picasso.Picasso
 
-class UsersListAdapter(usersList: ArrayList<User>) : RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
+
+class UsersListAdapter(usersList: ArrayList<User>, fragment: Fragment ) : RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
     private var usersList: ArrayList<User>
+    private var fragment: Fragment
 
     init {
         this.usersList = usersList
+        this.fragment = fragment
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textView: TextView
+        var imageView: ImageView
 
         init {
             textView = itemView.findViewById(R.id.textView)
+            imageView = itemView.findViewById(R.id.imageView)
         }
     }
 
@@ -36,6 +44,7 @@ class UsersListAdapter(usersList: ArrayList<User>) : RecyclerView.Adapter<UsersL
         val user = usersList[position]
 
         holder.textView.text = user.login
+        Picasso.with(fragment.requireContext()).load(user.avatar_url).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

@@ -8,7 +8,7 @@ import com.poniatowska.taskusers.models.User
 
 @Database(entities = [User::class], version = 1)
 abstract class UsersDatabase : RoomDatabase() {
-    abstract fun wineDao(): UserDao
+    abstract fun userDao(): UserDao
 
     companion object{
         private var instance: UsersDatabase? = null

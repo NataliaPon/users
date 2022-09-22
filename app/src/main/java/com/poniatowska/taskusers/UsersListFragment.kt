@@ -13,7 +13,7 @@ import com.poniatowska.taskusers.models.User
 
 class UsersListFragment : Fragment() {
 
-    var usersListAdapter: UsersListAdapter = UsersListAdapter(ArrayList())
+    private lateinit var usersListAdapter: UsersListAdapter // = UsersListAdapter(ArrayList(),requireActivity())
     companion object {
         fun newInstance() = UsersListFragment()
     }
@@ -24,6 +24,8 @@ class UsersListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        usersListAdapter = UsersListAdapter(ArrayList(),this)
+
         val view = inflater.inflate(R.layout.fragment_users_list, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)

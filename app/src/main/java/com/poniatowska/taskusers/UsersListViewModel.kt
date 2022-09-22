@@ -13,6 +13,6 @@ class UsersListViewModel : ViewModel() {//(context: Context)
 //    }
     fun getUsersList(context: Context): LiveData<List<User>> {
         val database = UsersDatabase.getInstance(context)
-        return database.wineDao().getAllUsers()
+        return database.userDao().getAllUsers()
     }
 }
